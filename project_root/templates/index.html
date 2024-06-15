@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <!-- Add your CSS styles or include external stylesheets here -->
+    <style>
+        /* Add your styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Add styling for the form */
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Style for displaying the predicted price */
+        #predictedPrice {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>House Price Prediction</h1>
+    </header>
+    <main>
+        <p>Welcome to House Price Prediction Model!</p>
+
+        <!-- Form for input fields -->
+        <form id="predictionForm">
+            <label for="bedrooms">Bedrooms:</label>
+            <select id="bedrooms" name="bedrooms">
+                <option value="" disabled selected>Select number of bedrooms</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <label for="bathrooms">Bathrooms:</label>
+            <select id="bathrooms" name="bathrooms">
+                <option value="" disabled selected>Select number of bathrooms</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <label for="city">City:</label>
+            <select id="city" name="city">
+                <option value="" disabled selected>Select city</option>
+                <!-- Add options for cities in the USA here -->
+                <option value="New York">New York</option>
+                <option value="Los Angeles">Los Angeles</option>
+                <option value="Chicago">Chicago</option>
+                <option value="Houston">Houston</option>
+                <option value="Phoenix">Phoenix</option>
+                <option value="Philadelphia">Philadelphia</option>
+                <option value="San Antonio">San Antonio</option>
+                <option value="San Diego">San Diego</option>
+                <option value="Dallas">Dallas</option>
+                <option value="San Jose">San Jose</option>
+                <option value="Austin">Austin</option>
+                <option value="Jacksonville">Jacksonville</option>
+                <option value="Fort Worth">Fort Worth</option>
+                <option value="Columbus">Columbus</option>
+                <option value="San Francisco">San Francisco</option>
+                <option value="Charlotte">Charlotte</option>
+                <option value="Indianapolis">Indianapolis</option>
+                <option value="Seattle">Seattle</option>
+                <option value="Denver">Denver</option>
+                <option value="Washington">Washington</option>
+                <option value="Boston">Boston</option>
+                <option value="El Paso">El Paso</option>
+                <option value="Detroit">Detroit</option>
+                <option value="Nashville">Nashville</option>
+                <option value="Portland">Portland</option>
+                <option value="Memphis">Memphis</option>
+                <option value="Oklahoma City">Oklahoma City</option>
+                <option value="Las Vegas">Las Vegas</option>
+                <option value="Louisville">Louisville</option>
+                <option value="Baltimore">Baltimore</option>
+                <option value="Milwaukee">Milwaukee</option>
+                <option value="Albuquerque">Albuquerque</option>
+                <option value="Tucson">Tucson</option>
+                <option value="Fresno">Fresno</option>
+                <option value="Sacramento">Sacramento</option>
+                <option value="Mesa">Mesa</option>
+                <option value="Kansas City">Kansas City</option>
+                <option value="Atlanta">Atlanta</option>
+                <option value="Long Beach">Long Beach</option>
+                <option value="Colorado Springs">Colorado Springs</option>
+                <option value="Raleigh">Raleigh</option>
+                <option value="Miami">Miami</option>
+                <option value="Virginia Beach">Virginia Beach</option>
+                <option value="Oakland">Oakland</option>
+                <option value="Minneapolis">Minneapolis</option>
+                <option value="Tulsa">Tulsa</option>
+                <option value="Arlington">Arlington</option>
+                <option value="New Orleans">New Orleans</option>
+                <option value="Wichita">Wichita</option>
+                <option value="Cleveland">Cleveland</option>
+                <option value="Tampa">Tampa</option>
+                <option value="Bakersfield">Bakersfield</option>
+                <option value="Aurora">Aurora</option>
+                <option value="Anaheim">Anaheim</option>
+                <option value="Honolulu">Honolulu</option>
+                <option value="Santa Ana">Santa Ana</option>
+                <option value="Riverside">Riverside</option>
+                <option value="Corpus Christi">Corpus Christi</option>
+                <option value="Lexington">Lexington</option>
+                <option value="Stockton">Stockton</option>
+                <option value="St. Louis">St. Louis</option>
+                <option value="Saint Paul">Saint Paul</option>
+                <option value="Henderson">Henderson</option>
+                <option value="Pittsburgh">Pittsburgh</option>
+                <option value="Cincinnati">Cincinnati</option>
+                <option value="Anchorage">Anchorage</option>
+                <option value="Greensboro">Greensboro</option>
+                <option value="Plano">Plano</option>
+                <option value="Newark">Newark</option>
+                <option value="Lincoln">Lincoln</option>
+                <option value="Orlando">Orlando</option>
+                <option value="Chula Vista">Chula Vista</option>
+                <option value="Jersey City">Jersey City</option>
+                <option value="Buffalo">Buffalo</option>
+                <option value="Fort Wayne">Fort Wayne</option>
+                <option value="Chandler">Chandler</option>
+                <option value="St. Petersburg">St. Petersburg</option>
+                <option value="Laredo">Laredo</option>
+                <option value="Durham">Durham</option>
+                <option value="Irvine">Irvine</option>
+                <option value="Madison">Madison</option>
+                <option value="Norfolk">Norfolk</option>
+                <option value="Lubbock">Lubbock</option>
+                <option value="Gilbert">Gilbert</option>
+                <option value="Winston-Salem">Winston-Salem</option>
+                <option value="Glendale">Glendale</option>
+                <option value="Reno">Reno</option>
+                <option value="Hialeah">Hialeah</option>
+                <option value="Garland">Garland</option>
+                <option value="Chesapeake">Chesapeake</option>
+                <option value="Irving">Irving</option>
+                <option value="North Las Vegas">North Las Vegas</option>
+                <option value="Scottsdale">Scottsdale</option>
+                <option value="Baton Rouge">Baton Rouge</option>
+                <option value="Fremont">Fremont</option>
+                <option value="Richmond">Richmond</option>
+                <option value="Boise">Boise</option>
+                <option value="San Bernardino">San Bernardino</option>
+                <option value="Spokane">Spokane</option>
+                <option value="Des Moines">Des Moines</option>
+                <option value="Modesto">Modesto</option>
+                <option value="Birmingham">Birmingham</option>
+                <option value="Tacoma">Tacoma</option>
+                <option value="Fontana">Fontana</option>
+                <option value="Rochester">Rochester</option>
+                <option value="Oxnard">Oxnard</option>
+                <option value="Moreno Valley">Moreno Valley</option>
+                <option value="Fayetteville">Fayetteville</option>
+                <option value="Aurora">Aurora</option>
+                <option value="Glendale">Glendale</option>
+                <option value="Yonkers">Yonkers</option>
+                <option value="Huntington Beach">Huntington Beach</option>
+                <option value="Arlington">Arlington</option>
+                <option value="Montgomery">Montgomery</option>
+                <option value="Amarillo">Amarillo</option>
+                <option value="Little Rock">Little
+                
+                <!-- Add more cities as needed -->
+            </select>
+
+            <!-- Predict Price button -->
+            <button type="button" onclick="sendData()">Predict Price</button>
+
+            <!-- Space for displaying predicted price -->
+            <div id="predictedPrice"></div>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 House Price Prediction. All rights reserved.</p>
+    </footer>
+    <!-- Add your JavaScript scripts or include external scripts here -->
+    <script>
+        // JavaScript function to send data and receive predicted price
+        function sendData() {
+            const form = document.getElementById('predictionForm');
+            const formData = new FormData(form);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(price => {
+                const formattedPrice = "$" + price.toFixed(2);  // Format price to 2 decimals
+                document.getElementById("predictedPrice").innerHTML = "Predicted Price: " + formattedPrice;
+            });
+        }
+    </script>
+</body>
+</html>
